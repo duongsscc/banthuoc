@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             return con;
         }
     }
-//FUCKKKKK
+
 // Câu lệnh lấy dữ liệu đơn giản :
 
 //    public ArrayList<"tentrong"-Mohinh> getlist()
