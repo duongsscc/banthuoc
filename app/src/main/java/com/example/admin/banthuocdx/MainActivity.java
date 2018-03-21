@@ -14,29 +14,20 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 //    private String Idthuoc="";
 //    private int Giatien=0;
 //    int count = 0;
-Connection con ;
-KetnoiData kc=new KetnoiData();
-private String errmsg="";
+    Connection con ;
+    KetnoiData kc=new KetnoiData();
+    private String errmsg="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Thread thread = new Thread(this);
-        thread.start();
+        thread.start(); //khi chạy thành công trên màn hình giả lập sẻ hiện thị kết nối thành công vs database
     }
 
     public void run() {
-
-        try {
-            con=kc.ketnoi();
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            errmsg=errmsg+e.getMessage();
-        }
-
-         mIncomingHandler.sendEmptyMessage(0);
+        con=kc.ketnoi();
+        mIncomingHandler.sendEmptyMessage(0);
     }
 
     Handler mIncomingHandler = new Handler(new Handler.Callback()
@@ -46,20 +37,20 @@ private String errmsg="";
 
             if (con!=null)
             {
-                textView.setText("kết nối thành công");
+                textView.setText("kết nối thành công , bắt đầu làm đi ");
             }
             else
             {
-                textView.setText("kết nối không thành công");
+                textView.setText("kết nối không thành công,xác cmn định :V");
             }
-          //  textView.setText("Idthuoc="+Idthuoc+" Giatien="+Giatien+" "+errmsg);
+            //  textView.setText("Idthuoc="+Idthuoc+" Giatien="+Giatien+" "+errmsg);
             return true;
         }
     });
 }
 
 
-
+//   Câu lệnh Cơ bản:
 //            String sql;
 //            sql = "SELECT * FROM thuoc";
 //            PreparedStatement prest = con.prepareStatement(sql);
@@ -70,4 +61,4 @@ private String errmsg="";
 //                count++;
 //            }
 //            prest.close();
-//            con.close();
+//            con.close();ose();
