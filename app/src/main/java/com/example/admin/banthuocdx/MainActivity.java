@@ -1,39 +1,73 @@
 package com.example.admin.banthuocdx;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
-public class MainActivity extends AppCompatActivity {
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
-    Connection con;
+import com.example.admin.banthuocdx.KetnoiCsdl.KetnoiData;
 
+public class MainActivity extends AppCompatActivity implements Runnable{
+
+//    private String Idthuoc="";
+//    private int Giatien=0;
+//    int count = 0;
+Connection con ;
+KetnoiData kc=new KetnoiData();
+private String errmsg="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getCon();
+        Thread thread = new Thread(this);
+        thread.start();
     }
-        public Connection getCon() {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/banthuoc", "root", "1234");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return con;
+
+    public void run() {
+
+        try {
+            con=kc.ketnoi();
+
         }
+        catch (Exception e){
+            e.printStackTrace();
+            errmsg=errmsg+e.getMessage();
+        }
+
+         mIncomingHandler.sendEmptyMessage(0);
     }
 
-// Câu lệnh lấy dữ liệu đơn giản :
+    Handler mIncomingHandler = new Handler(new Handler.Callback()
+    {
+        public boolean handleMessage(Message msg) {
+            TextView textView = findViewById(R.id.textView0);
 
-//    public ArrayList<"tentrong"-Mohinh> getlist()
-//
-//        ArrayList<"tentrong"-Mohinh> list = null;
-//        DBConnect mydb = new DBConnect();
-//        Connection con = mydb.getCon();
+            if (con!=null)
+            {
+                textView.setText("kết nối thành công");
+            }
+            else
+            {
+                textView.setText("kết nối không thành công");
+            }
+          //  textView.setText("Idthuoc="+Idthuoc+" Giatien="+Giatien+" "+errmsg);
+            return true;
+        }
+    });
+}
+
+
+
+//            String sql;
+//            sql = "SELECT * FROM thuoc";
+//            PreparedStatement prest = con.prepareStatement(sql);
+//            ResultSet rs = prest.executeQuery();
+//            while (rs.next()) {
+//                Idthuoc = rs.getString(1);
+//                Giatien = rs.getInt(4);
+//                count++;
+//            }
+//            prest.close();
+//            con.close();
