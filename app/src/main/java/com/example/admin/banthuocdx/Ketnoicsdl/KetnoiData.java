@@ -1,4 +1,4 @@
-package com.example.admin.banthuocdx.ketnoicsdl;
+package com.example.admin.banthuocdx.Ketnoicsdl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -7,7 +7,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.admin.banthuocdx.ketnoicsdl.KetnoiData;
+import com.example.admin.banthuocdx.Ketnoicsdl.KetnoiData;
 
 public class TestKetnoiCSDL extends AppCompatActivity implements Runnable{
 
@@ -20,7 +20,7 @@ public class TestKetnoiCSDL extends AppCompatActivity implements Runnable{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
         Thread thread = new Thread(this);
         thread.start(); //khi chạy thành công trên màn hình giả lập sẻ hiện thị kết nối thành công vs database
     }
