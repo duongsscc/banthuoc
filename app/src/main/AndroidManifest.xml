@@ -12,18 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".TestKetnoiCSDL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Dichvu.DangnhapDangky.ActivityDangnhapDangky" />
-        <activity android:name=".Dichvu.ListGiohang.ActivityGiohang" />
-        <activity android:name=".Dichvu.ListThuoc.ActivityListThuoc" />
-        <activity android:name=".Dichvu.ThanhToan.ActivityThanhtoan" />
-        <activity android:name=".Dichvu.NavigationDr.ActivityNavigationDr"></activity>
+        <activity android:name=".dichvu.dangnhapdangky.ActivityDangnhapDangky" />
+        <activity android:name=".dichvu.listgiohang.ActivityGiohang" />
+        <activity android:name=".dichvu.listthuoc.ActivityListThuoc" />
+        <activity android:name=".dichvu.thanhtoan.ActivityThanhtoan" />
+        <activity android:name=".dichvu.navigationdr.ActivityNavigationDr"></activity>
     </application>
 
 </manifest>

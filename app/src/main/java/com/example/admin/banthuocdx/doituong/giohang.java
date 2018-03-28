@@ -1,4 +1,4 @@
-package com.example.admin.banthuocdx.Doituong;
+package com.example.admin.banthuocdx.doituong;
 
 /**
  * Created by Admin on 3/21/2018.

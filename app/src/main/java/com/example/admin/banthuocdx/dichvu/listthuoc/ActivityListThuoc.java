@@ -1,4 +1,4 @@
-package com.example.admin.banthuocdx.Dichvu.ListThuoc;
+package com.example.admin.banthuocdx.dichvu.listthuoc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

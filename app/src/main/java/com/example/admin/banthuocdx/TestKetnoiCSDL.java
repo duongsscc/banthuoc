@@ -7,9 +7,9 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.admin.banthuocdx.KetnoiCsdl.KetnoiData;
+import com.example.admin.banthuocdx.ketnoicsdl.KetnoiData;
 
-public class MainActivity extends AppCompatActivity implements Runnable{
+public class TestKetnoiCSDL extends AppCompatActivity implements Runnable{
 
 //    private String Idthuoc="";
 //    private int Giatien=0;
@@ -37,11 +37,12 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
             if (con!=null)
             {
-                textView.setText("kết nối thành công , bắt đầu làm đi ");
+
+                textView.setText("ket noi thanh cong");
             }
             else
             {
-                textView.setText("kết nối không thành công,xác cmn định :V");
+               textView.setText("ket noi that cmn bai");
             }
             //  textView.setText("Idthuoc="+Idthuoc+" Giatien="+Giatien+" "+errmsg);
             return true;
