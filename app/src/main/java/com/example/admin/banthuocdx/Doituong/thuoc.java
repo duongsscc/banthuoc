@@ -24,7 +24,8 @@ tkadmin Idadmin;
         Mota = mota;
         AnhThuocList = anhThuocList;
     }
-
+public thuoc()
+{}
     public thuoc(String tenThuoc, String ngaySanXuat, Float giatien, int soluong, String hangSanXuat, String mota, String anhThuocChiTiet, theloaithuoc theLoai, tkadmin idadmin) {
         TenThuoc = tenThuoc;
         NgaySanXuat = ngaySanXuat;

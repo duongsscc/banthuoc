@@ -5,4 +5,24 @@ package com.example.admin.banthuocdx.Doituong;
  */
 
 public class donhang {
+    int IdDonhang;
+    giohang IdGiohang;
+    public donhang()
+    {}
+
+    public int getIdDonhang() {
+        return IdDonhang;
+    }
+
+    public void setIdDonhang(int idDonhang) {
+        IdDonhang = idDonhang;
+    }
+
+    public giohang getIdGiohang() {
+        return IdGiohang;
+    }
+
+    public void setIdGiohang(giohang idGiohang) {
+        IdGiohang = idGiohang;
+    }
 }
