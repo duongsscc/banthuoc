@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imgirecyle"
+            android:id="@+id/anhirecyle"
             android:layout_width="140dp"
             android:layout_height="90dp"
             android:layout_margin="2dp"
@@ -32,6 +32,15 @@
             android:gravity="center"
             android:text="ten"
             android:textColor="#080808" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/textMota"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="mota"
+            android:textColor="#080808" />
 
     </LinearLayout>
 
@@ -44,24 +53,24 @@
         android:orientation="horizontal">
 
 
+        <TextView
+            android:id="@+id/textSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="soluong"
+            android:textColor="#080808" />
 
         <TextView
-            android:layout_weight="1"
-            android:id="@+id/textMota"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="mota"
-            android:textColor="#080808" />
-        <TextView
-            android:id="@+id/Giatien"
+            android:id="@+id/textGiatien"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="90000vnd"
+            android:text="vnd"
             android:textColor="#080808" />
 
 
