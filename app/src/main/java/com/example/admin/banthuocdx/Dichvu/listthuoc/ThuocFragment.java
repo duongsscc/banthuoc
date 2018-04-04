@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.admin.banthuocdx.Doituong.thuoc;
@@ -34,7 +35,7 @@ public class ThuocFragment extends Fragment {
     Connection con;
     KetnoiData kc = new KetnoiData();
     TextView textView;
-
+Button button;
     public ThuocFragment() {
         // Required empty public constructor
     }
