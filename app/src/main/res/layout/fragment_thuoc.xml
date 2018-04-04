@@ -8,11 +8,12 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-
+         android:background="#d1dfb7"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <ImageButton
             android:id="@+id/btnsearch"
+            android:background="#faa46f"
             android:src="@drawable/ic_action_seach"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -24,7 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
+        android:background="#8f2e33"
         android:id="@+id/listRethuoc"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

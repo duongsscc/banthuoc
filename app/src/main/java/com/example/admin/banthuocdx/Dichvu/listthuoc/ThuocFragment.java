@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
+
 public class ThuocFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdapterThuoc adapterThuoc;
@@ -43,13 +44,14 @@ public class ThuocFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_thuoc, container, false);
         recyclerView = view.findViewById(R.id.listRethuoc);
+        cardView=view.findViewById(R.id.itemX);
         Hienthilistthuoc();
         return view;
 
     }
 
     private void Cauhinhlist() {
-        adapterThuoc = new AdapterThuoc(getLayoutInflater(), list);
+        adapterThuoc = new AdapterThuoc(getLayoutInflater(), list,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -69,7 +71,7 @@ public class ThuocFragment extends Fragment {
                     PreparedStatement prest = con.prepareStatement(sql);
                     ResultSet rs = prest.executeQuery();
                     while (rs.next()) {
-                        thuoc th = new thuoc(rs.getString("Tenthuoc"), rs.getFloat("Giatien"), rs.getInt("Soluong"), rs.getString("Mota"));
+                        thuoc th = new thuoc(rs.getString("Tenthuoc"), rs.getFloat("Giatien"), rs.getInt("Soluong"), rs.getString("Mota"),rs.getString("Anhthuoclist"));
 
                         list.add(th);
                         mIncomingHandler.sendEmptyMessage(0);

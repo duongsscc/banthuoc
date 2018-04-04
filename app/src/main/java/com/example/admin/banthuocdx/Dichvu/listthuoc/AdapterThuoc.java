@@ -1,5 +1,7 @@
 package com.example.admin.banthuocdx.Dichvu.listthuoc;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,16 +13,24 @@ import android.widget.TextView;
 
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolder> {
     LayoutInflater layoutInflater;
     ArrayList<thuoc> thuocArrayList;
+    Context context;
 
     public AdapterThuoc(LayoutInflater Inflater, ArrayList<thuoc> list) {
         this.layoutInflater = Inflater;
         this.thuocArrayList = list;
+    }
+
+    public AdapterThuoc(LayoutInflater layoutInflater, ArrayList<thuoc> thuocArrayList, Context context) {
+        this.layoutInflater = layoutInflater;
+        this.thuocArrayList = thuocArrayList;
+        this.context = context;
     }
 
     @Override
@@ -35,13 +45,15 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
         holder.textmota.setText(th.getMota());
         holder.textgiatien.setText(String.valueOf(th.getGiatien()));
         holder.textsoluong.setText(String.valueOf(th.getSoluong()));
-        holder.imgAnh.setImageResource(Integer.parseInt(th.getAnhThuocList()));
+        Picasso.with(context)
+                .load(th.getAnhThuocList())
+                .into(holder.imgAnh);
         holder.cardView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
-        return  thuocArrayList.size();
+        return thuocArrayList.size();
     }
 
     class appviewHolder extends RecyclerView.ViewHolder {
