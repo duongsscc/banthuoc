@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,10 +19,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolder> {
+public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolder> implements Filterable {
     LayoutInflater layoutInflater;
-    ArrayList<thuoc> thuocArrayList;
+    ArrayList<thuoc> thuocArrayList,timlist;
     Context context;
+    timkiemAdapter timkiemAdapter;
 
     public AdapterThuoc(LayoutInflater Inflater, ArrayList<thuoc> list) {
         this.layoutInflater = Inflater;
@@ -30,8 +33,10 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
     public AdapterThuoc(LayoutInflater layoutInflater, ArrayList<thuoc> thuocArrayList, Context context) {
         this.layoutInflater = layoutInflater;
         this.thuocArrayList = thuocArrayList;
+        this.timlist=thuocArrayList;
         this.context = context;
     }
+
 
     @Override
     public appviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,6 +59,15 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
     @Override
     public int getItemCount() {
         return thuocArrayList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (timkiemAdapter==null)
+        {
+            timkiemAdapter=new timkiemAdapter(this, timlist);
+        }
+        return timkiemAdapter;
     }
 
     class appviewHolder extends RecyclerView.ViewHolder {
