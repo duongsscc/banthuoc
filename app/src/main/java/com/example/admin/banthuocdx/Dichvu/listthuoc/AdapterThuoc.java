@@ -7,13 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.banthuocdx.Doituong.thuoc;
+import com.example.admin.banthuocdx.Doituong.tkadmin;
+import com.example.admin.banthuocdx.Doituong.tkkhachhang;
 import com.example.admin.banthuocdx.R;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +28,8 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
     ArrayList<thuoc> thuocArrayList,timlist;
     Context context;
     timkiemAdapter timkiemAdapter;
-
+ArrayList<tkadmin>listad;
+ArrayList<tkkhachhang>listkh;
     public AdapterThuoc(LayoutInflater Inflater, ArrayList<thuoc> list) {
         this.layoutInflater = Inflater;
         this.thuocArrayList = list;
@@ -44,8 +49,14 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
     }
 
     @Override
-    public void onBindViewHolder(appviewHolder holder, int position) {
-        thuoc th = thuocArrayList.get(position);
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    @Override
+    public void onBindViewHolder(final appviewHolder holder, final int position) {
+        final thuoc th = thuocArrayList.get(position);
+
         holder.textten.setText(th.getTenThuoc());
         holder.textmota.setText(th.getMota());
         holder.textgiatien.setText(String.valueOf(th.getGiatien()));
@@ -53,6 +64,21 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
         Picasso.with(context)
                 .load(th.getAnhThuocList())
                 .into(holder.imgAnh);
+        holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"click",Toast.LENGTH_LONG).show();
+                ThuocFragment tf= new ThuocFragment();
+                float tongggiatien=0;
+                int soluongmua=0, idthuoc=0, idadmin=0, idkhachhang = 0;
+                tongggiatien=thuocArrayList.get(position).getGiatien();
+                soluongmua=1;
+                idthuoc=thuocArrayList.get(position).getIdThuoc();
+                idadmin=1;//chưa có key set tạm :V
+                idkhachhang=1;
+                tf.themgiohang(tongggiatien,soluongmua,idthuoc,idadmin,idkhachhang);
+            }
+        });
         holder.cardView.setTag(position);
     }
 
@@ -74,9 +100,10 @@ public class AdapterThuoc extends RecyclerView.Adapter<AdapterThuoc.appviewHolde
         TextView textten, textmota, textgiatien, textsoluong;
         ImageView imgAnh;
         CardView cardView;
-
+        Button buttonthemgio;
         public appviewHolder(View itemView) {
             super(itemView);
+            buttonthemgio=itemView.findViewById(R.id.btnthemgio);
             textten = itemView.findViewById(R.id.textTenthuoc);
             textmota = itemView.findViewById(R.id.textMota);
             textgiatien = itemView.findViewById(R.id.textGiatien);

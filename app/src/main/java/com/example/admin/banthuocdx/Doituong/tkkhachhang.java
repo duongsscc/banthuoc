@@ -5,7 +5,7 @@ package com.example.admin.banthuocdx.Doituong;
  */
 
 public class tkkhachhang {
-    int IdAdmin;
+    int IdKhachhang;
     String Hoten;
     String Sodienthoai;
     String DiaChi;
@@ -16,12 +16,13 @@ public class tkkhachhang {
     public tkkhachhang()
     {}
 
-    public int getIdAdmin() {
-        return IdAdmin;
+
+    public int getIdKhachhang() {
+        return IdKhachhang;
     }
 
-    public void setIdAdmin(int idAdmin) {
-        IdAdmin = idAdmin;
+    public void setIdKhachhang(int idKhachhang) {
+        IdKhachhang = idKhachhang;
     }
 
     public String getHoten() {

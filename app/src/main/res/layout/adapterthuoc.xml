@@ -131,7 +131,7 @@
                     <Button
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
-                        android:id="@+id/angry_btn"
+                        android:id="@+id/btnthemgio"
                         android:gravity="center"
                         android:layout_width="102dp"
                         android:layout_height="50dp"
