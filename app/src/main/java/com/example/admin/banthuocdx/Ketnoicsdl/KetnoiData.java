@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class KetnoiData  {
 
-    String Host="192.168.0.102";  //vào cmd run adminstration gõ ipconfig tìm DNS iv4
+    String Host="192.168.56.1";  //vào cmd run adminstration gõ ipconfig tìm DNS iv4
     String user="root";
     String pass="1234";
     String data="banthuoc";
