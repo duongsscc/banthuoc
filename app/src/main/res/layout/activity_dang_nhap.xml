@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dichvu.dangnhapdangky.ActivityDangNhap">
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#ff0000"
+            android:layout_margin="10dp"
+            android:text="Đăng Nhập"
+            android:layout_gravity="center"
+            android:textSize="35sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_user"
+            android:layout_margin="10dp"
+            android:hint="Nhập tên tài khoản"
+            android:id="@+id/editTextTK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_password"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"
+            android:hint="Nhập mật khẩu"
+            android:id="@+id/editTextMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#160808"
+            android:id="@+id/textthongbao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="30sp" />
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="50dp"
+            android:id="@+id/cardViewDangNhap"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            app:cardBackgroundColor="#0997be"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:textColor="#f4f1f1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Đăng nhập"
+                android:textSize="30sp" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

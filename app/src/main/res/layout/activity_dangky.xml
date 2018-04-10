@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.banthuocdx.Dichvu.dangnhapdangky.ActivityDangky">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:text="Đăng Ký"
+            android:layout_gravity="center"
+            android:textColor="#FF00"
+            android:textSize="35sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_user"
+            android:layout_margin="10dp"
+            android:hint="Nhập họ tên"
+            android:id="@+id/editTextHoTen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_user"
+            android:layout_margin="10dp"
+            android:hint="Nhập tên tài khoản"
+            android:id="@+id/editTextTaiKhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_password"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"
+            android:hint="Nhập mật khẩu"
+            android:id="@+id/editTextMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+        android:drawableLeft="@drawable/ic_action_phone"
+        android:inputType="phone"
+        android:layout_margin="10dp"
+        android:hint="Nhập số điện thoại"
+        android:id="@+id/editTextSDT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <EditText
+            android:drawableLeft="@drawable/ic_action_address"
+            android:layout_margin="10dp"
+            android:hint="Nhập địa chỉ"
+            android:id="@+id/editTextDiaChi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="40dp"
+        android:id="@+id/cardViewLogIn"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:cardBackgroundColor="#0997be"
+        app:cardCornerRadius="20dp">
+
+        <TextView
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Đăng nhập"
+            android:textSize="30sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
+        android:id="@+id/cardViewSignUp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+       app:cardBackgroundColor="#46995a"
+        app:cardCornerRadius="20dp">
+
+        <TextView
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Đăng ký"
+            android:textSize="30sp" />
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
