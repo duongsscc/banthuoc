@@ -1,6 +1,5 @@
 package com.example.admin.banthuocdx.Dichvu.listthuoc;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;

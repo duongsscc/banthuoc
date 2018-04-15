@@ -16,6 +16,7 @@ String AnhThuocChiTiet;
 String AnhThuocList;
 theloaithuoc TheLoai;
 tkadmin Idadmin;
+int slGioHang;
 
     public thuoc(String tenThuoc, Float giatien, int soluong, String mota, String anhThuocList) {
         TenThuoc = tenThuoc;
@@ -31,6 +32,17 @@ tkadmin Idadmin;
         Soluong = soluong;
         Mota = mota;
     }
+
+    public thuoc(String tenThuoc, Float giatien, int soluong, int slGioHang, String mota,String anhThuocList)
+    {
+        this.TenThuoc = tenThuoc;
+        this.Giatien = giatien;
+        this.Soluong = soluong;
+        this.Mota = mota;
+        this.slGioHang = slGioHang;
+        this.AnhThuocList = anhThuocList;
+    }
+
 public thuoc()
 {}
     public thuoc(String tenThuoc, String ngaySanXuat, Float giatien, int soluong, String hangSanXuat, String mota, String anhThuocChiTiet, theloaithuoc theLoai, tkadmin idadmin) {
@@ -45,8 +57,15 @@ public thuoc()
         Idadmin = idadmin;
     }
 
+    public int getSlGioHang(){
+        return this.slGioHang;
+    }
     public int getIdThuoc() {
         return IdThuoc;
+    }
+
+    public void setSlGioHang(int sl){
+        this.slGioHang = sl;
     }
 
     public void setIdThuoc(int idThuoc) {

@@ -1,7 +1,6 @@
 package com.example.admin.banthuocdx.Dichvu.listthuoc;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,15 +10,17 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.Doituong.tkadmin;
 import com.example.admin.banthuocdx.Doituong.tkkhachhang;
 import com.example.admin.banthuocdx.R;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -64,21 +65,28 @@ ArrayList<tkkhachhang>listkh;
         Picasso.with(context)
                 .load(th.getAnhThuocList())
                 .into(holder.imgAnh);
+//        holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context,"click",Toast.LENGTH_LONG).show();
+//                ThuocFragment tf= new ThuocFragment();
+//                float tongggiatien=0;
+//                int soluongmua=0, idthuoc=0, idadmin=0, idkhachhang = 0;
+//                tongggiatien=thuocArrayList.get(position).getGiatien();
+//                soluongmua=1;
+//                idthuoc=thuocArrayList.get(position).getIdThuoc();
+//                idadmin=1;//chưa có key set tạm :V
+//                idkhachhang=1;
+//                tf.themgiohang(tongggiatien,soluongmua,idthuoc,idadmin,idkhachhang);
+//            }
+//        });
         holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"click",Toast.LENGTH_LONG).show();
-                ThuocFragment tf= new ThuocFragment();
-                float tongggiatien=0;
-                int soluongmua=0, idthuoc=0, idadmin=0, idkhachhang = 0;
-                tongggiatien=thuocArrayList.get(position).getGiatien();
-                soluongmua=1;
-                idthuoc=thuocArrayList.get(position).getIdThuoc();
-                idadmin=1;//chưa có key set tạm :V
-                idkhachhang=1;
-                tf.themgiohang(tongggiatien,soluongmua,idthuoc,idadmin,idkhachhang);
+                sendThuocToFragmentGioHang(thuocArrayList.get(position));
             }
         });
+
         holder.cardView.setTag(position);
     }
 
@@ -111,5 +119,9 @@ ArrayList<tkkhachhang>listkh;
             imgAnh = itemView.findViewById(R.id.anhirecyle);
             cardView = itemView.findViewById(R.id.itemX);
         }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    private void sendThuocToFragmentGioHang(thuoc th){
+        EventBus.getDefault().postSticky(th);
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/thuoc" android:title="Thuốc" android:icon="@drawable/ic_star_black_24dp"/>
+    <item android:id="@+id/giohang" android:title="Giỏ hàng" android:icon="@drawable/ic_shopping_cart_black_24dp"/>
+    <item android:id="@+id/thongtin" android:title="Thông tin tài khoản" android:icon="@drawable/ic_mood_black_24dp"/>
+    <item android:id="@+id/dangxuat" android:title="Đăng xuất" android:icon="@drawable/ic_61208"/>
+
+</menu>

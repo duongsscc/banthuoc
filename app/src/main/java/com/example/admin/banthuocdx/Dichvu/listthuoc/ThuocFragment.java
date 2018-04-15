@@ -59,8 +59,8 @@ public class ThuocFragment extends Fragment {
         cardView = view.findViewById(R.id.itemX);
         searchView = view.findViewById(R.id.searchviews);
         Hienthilistthuoc();
-        Hienthilistadmin();
-        Hienthilistkhachang();
+      //  Hienthilistadmin();
+       // Hienthilistkhachang();
         return view;
 
     }

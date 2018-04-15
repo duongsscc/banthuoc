@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemGioHang"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:clickable="true"
+    android:orientation="vertical"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="16dp"
+    android:layout_marginBottom="2dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/anhThuocGioHang"
+                android:layout_width="256px"
+                android:layout_height="180px"
+                android:src="@drawable/thuoc" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textTenthuocGioHang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="ten"
+                    android:textColor="#080808" />
+
+                <TextView
+                    android:id="@+id/textMotaThuocGioHang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="mota"
+                    android:textColor="#080808" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="39dp"
+                        android:gravity="center"
+                        android:text="Giá tiền:"
+                        android:textColor="#051f7c" />
+
+                    <TextView
+                        android:id="@+id/textGiatienThuocGioHang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="XXXXXX"
+                        android:textColor="#080808" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="vnd"
+                        android:textColor="#080808" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:id="@+id/btnSoLuongThuoc"
+                        app:backGroundColor="#8ef4cf"
+                        app:textColor="#000"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layoutDirection="rtl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textXoa"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="#f2190a"
+                    android:layout_marginRight="10dp"
+                    android:text="Xóa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

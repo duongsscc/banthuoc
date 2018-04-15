@@ -1,8 +1,14 @@
 package com.example.admin.banthuocdx.Dichvu.ListPage;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,6 +17,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,39 +26,27 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.admin.banthuocdx.Dichvu.dangnhapdangky.ActivityDangky;
 import com.example.admin.banthuocdx.Dichvu.listgiohang.GiohangFragment;
 import com.example.admin.banthuocdx.Dichvu.listthuoc.ThuocFragment;
 import com.example.admin.banthuocdx.R;
 
-public class ListPageActivity extends AppCompatActivity {
+public class ListPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
+    private DrawerLayout mDrawerlayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_page);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -59,11 +54,59 @@ public class ListPageActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
+        mDrawerlayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.navi);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer);
+        if (mDrawerlayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerlayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int m = item.getItemId();
+        if (m == R.id.thuoc) {
+            //TODO add thuoc fragment
+            Log.d("gg", "menu click");
+            Intent thuoc = new Intent(ListPageActivity.this, ListPageActivity.class);
+            startActivity(thuoc);
+        } else if (m == R.id.giohang) {
+            Intent giohang = new Intent(ListPageActivity.this, GiohangFragment.class);
+            startActivity(giohang);
+        } else if (m == R.id.dangxuat) {
+            Intent dangxuat = new Intent(ListPageActivity.this, ActivityDangky.class);
+            startActivity(dangxuat);
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,20 +115,20 @@ public class ListPageActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -134,15 +177,14 @@ public class ListPageActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-           switch (position)
-           {
-               case 0:
-                   ThuocFragment thuocFragment=new ThuocFragment();
-                   return thuocFragment;
-               case 1:
-                   GiohangFragment giohangFragment=new GiohangFragment();
-                   return giohangFragment;
-           }
+            switch (position) {
+                case 0:
+                    ThuocFragment thuocFragment = new ThuocFragment();
+                    return thuocFragment;
+                case 1:
+                    GiohangFragment giohangFragment = new GiohangFragment();
+                    return giohangFragment;
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -154,8 +196,7 @@ public class ListPageActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position)
-            {
+            switch (position) {
                 case 0:
                     return "THUOC";
                 case 1:
