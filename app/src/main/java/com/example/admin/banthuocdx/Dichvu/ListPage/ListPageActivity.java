@@ -131,15 +131,12 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 tenKH.setText(listkh.get(0).getHoten());
                                 sdtKH.setText(listkh.get(0).getSodienthoai());
+                                //hàm dưới không sai.Nhưng chưa có ảnh trong CSDL nên sẽ bị lỗi
                            //     imgAnhkh.setImageResource(Integer.parseInt(listkh.get(0).getAnhKhachhang().toString()));
                             }
                         });
-
-
-
                         mIncomingHandler.sendEmptyMessage(0);
                     }
 
