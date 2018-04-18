@@ -45,7 +45,7 @@ public class ThuocFragment extends Fragment {
     tkkhachhang tkkhachhang=null;
     SearchView searchView;
     Button themgio;
-
+    String taikhoan;
 
     public ThuocFragment() {
         // Required empty public constructor

@@ -1,6 +1,7 @@
 package com.example.admin.banthuocdx.Dichvu.dangnhapdangky;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -19,6 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.admin.banthuocdx.Dichvu.ListPage.ListPageActivity;
+import com.example.admin.banthuocdx.Dichvu.listthuoc.Laytk;
+import com.example.admin.banthuocdx.Dichvu.listthuoc.ThuocFragment;
+import com.example.admin.banthuocdx.Doituong.tkkhachhang;
 import com.example.admin.banthuocdx.R;
 
 import org.json.JSONArray;
@@ -26,17 +30,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ActivityDangNhap extends AppCompatActivity {
-TextView textView;
+    TextView textView;
     Animation animation;
     EditText edtTaikhoan, edtMatkhau;
     CardView cardViewDangNhap;
+    String taikhoan, matkhau;
     String urlDangNhap = "http://192.168.0.102/qlbt_php/dangnhap.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_nhap);
-        textView=findViewById(R.id.textthongbao);
+        textView = findViewById(R.id.textthongbao);
         Anhxa();
 
         cardViewDangNhap.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +80,17 @@ TextView textView;
                                 String taikhoan = object.getString("Taikhoan");
                                 String matkhau = object.getString("Matkhau");
                                 if (edtTaikhoan.getText().toString().trim().equals(taikhoan) && edtMatkhau.getText().toString().trim().equals(matkhau)) {
+//                                    SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
+//                                    SharedPreferences.Editor edit = sharedPreferences.edit();
+//                                    edit.putString("Taikhoan", taikhoan);
+//                                    edit.commit();
+                                    Intent intent = new Intent(ActivityDangNhap.this, ListPageActivity.class);
+                                    intent.putExtra("tentk", taikhoan);
+                                    startActivity(intent);
 
-                                    startActivity(new Intent(ActivityDangNhap.this, ListPageActivity.class));
                                 } else {
-                                String x="sai thông tin";
-                                textView.setText(x);
+                                    String x = "sai thông tin";
+                                    textView.setText(x);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -95,4 +106,11 @@ TextView textView;
                 });
         requestQueue.add(jsonArrayRequest);
     }
+//   public void laytaikhoan(String tk,String mk)
+//    {
+//
+//        tkkhachhang tkkhachhang = new tkkhachhang();
+//        tkkhachhang.setTaikhoan(tk.toString());
+//        tkkhachhang.setMatkhau(mk.toString());
+//    }
 }

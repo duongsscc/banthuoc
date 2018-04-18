@@ -1,7 +1,11 @@
 package com.example.admin.banthuocdx.Dichvu.ListPage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -24,12 +28,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.banthuocdx.Dichvu.dangnhapdangky.ActivityDangky;
 import com.example.admin.banthuocdx.Dichvu.listgiohang.GiohangFragment;
 import com.example.admin.banthuocdx.Dichvu.listthuoc.ThuocFragment;
+import com.example.admin.banthuocdx.Doituong.tkadmin;
+import com.example.admin.banthuocdx.Doituong.tkkhachhang;
+import com.example.admin.banthuocdx.Ketnoicsdl.KetnoiData;
 import com.example.admin.banthuocdx.R;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ListPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,34 +52,112 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
-
+    public ArrayList<tkkhachhang> listkh;
+    public ArrayList<tkadmin> listadmin;
+    tkkhachhang tkkhachhang = null;
+    Connection con;
+    KetnoiData kc = new KetnoiData();
+    TextView tenKH, sdtKH;
+    ImageView imgAnhkh;
+    String hoten, sdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_page);
+        imgAnhkh = findViewById(R.id.anhhead);
+
+
+        String tentk = getIntent().getStringExtra("tentk");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
         mDrawerlayout.addDrawerListener(mToggle);
         mToggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.navi);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View headerview = navigationView.getHeaderView(0);
+        tenKH = headerview.findViewById(R.id.textheadTEN);
+        sdtKH = headerview.findViewById(R.id.textheadSDT);
+        Hienthikhachang(tentk);
 
     }
+
+
+    public void Hienthikhachang(final String taikhoan) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                con = kc.ketnoi();
+                listkh = new ArrayList<>();
+                try {
+                    String sql;
+                    sql = "SELECT * FROM tkkhachhang WHERE taikhoan=?";
+                    PreparedStatement prest = con.prepareStatement(sql);
+                  prest.setString(1,taikhoan);
+                    ResultSet rs = prest.executeQuery();
+
+                    while (rs.next()) {
+                        tkkhachhang = new tkkhachhang();
+                        tkkhachhang.setIdKhachhang(rs.getInt("IdKhachhang"));
+                        tkkhachhang.setHoten(rs.getString("Hoten"));
+                        tkkhachhang.setSodienthoai(rs.getString("Sodienthoai"));
+                        tkkhachhang.setAnhKhachhang(rs.getString("Anhkhachhang"));
+                        tkkhachhang.setAnhKhachhangchitiet(rs.getString("Anhkhachhangchitiet"));
+                        tkkhachhang.setTaikhoan(rs.getString("taikhoan"));
+                        tkkhachhang.setMatkhau(rs.getString("matkhau"));
+                        listkh.add(tkkhachhang);
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putString("Taikhoan",rs.getString("taikhoan"));
+                        edit.putString("Hoten",rs.getString("Hoten"));
+                        edit.putString("Sodienthoai",rs.getString("Sodienthoai"));
+                        edit.putString("Anhkhachhang",rs.getString("Anhkhachhang"));
+                        edit.putString("Anhkhachhangchitiet",rs.getString("Anhkhachangchitiet"));
+                        edit.commit();
+
+
+                        hienlist();
+
+
+                        mIncomingHandler.sendEmptyMessage(0);
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void hienlist() {
+
+        tenKH.setText(listkh.get(0).getHoten());
+        sdtKH.setText(listkh.get(0).getSodienthoai());
+        imgAnhkh.setImageResource(Integer.parseInt(listkh.get(0).getAnhKhachhang().toString()));
+
+    }
+
+    Handler mIncomingHandler = new Handler(new Handler.Callback() {
+        public boolean handleMessage(Message msg) {
+
+            return true;
+        }
+    });
 
     @Override
     public void onBackPressed() {
@@ -114,6 +205,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         getMenuInflater().inflate(R.menu.menu_list_page, menu);
         return true;
     }
+
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

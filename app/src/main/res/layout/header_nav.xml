@@ -9,21 +9,25 @@
     android:paddingTop="40dp">
 
     <ImageView
+        android:id="@+id/anhhead"
         android:src="@drawable/avata"
         android:layout_width="60dp"
         android:layout_height="60dp" />
+
     <TextView
+        android:id="@+id/textheadTEN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Lans"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="17dp"
-        android:layout_marginTop="5dp"/>
+        android:textStyle="bold" />
     <TextView
+        android:id="@+id/textheadSDT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lans123@gmail.com"
+        android:text="09654656326"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 

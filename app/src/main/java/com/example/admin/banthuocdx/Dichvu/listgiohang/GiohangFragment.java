@@ -1,6 +1,7 @@
 package com.example.admin.banthuocdx.Dichvu.listgiohang;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.banthuocdx.Doituong.getCartChangeEvent;
 import com.example.admin.banthuocdx.Doituong.thuoc;
@@ -28,7 +30,7 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
     RecyclerView.Adapter adapter;
     ArrayList<thuoc> arrayListThuoc;
     TextView textTongTien;
-
+    SharedPreferences sharedPreferences;
     public GiohangFragment(){
 
     }
@@ -47,7 +49,11 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         adapter = new AdapterGioHang(getActivity().getApplicationContext(),arrayListThuoc);
 
         recyclerView.setAdapter(adapter);
+
         textTongTien = view.findViewById(R.id.textTongTien);
+        sharedPreferences = getContext().getSharedPreferences("Myuser",Context.MODE_PRIVATE);
+        String hoten = sharedPreferences.getString("Hoten","KHONG CO");
+  //      Toast.makeText(getContext(),hoten,)
 
         return view;
     }

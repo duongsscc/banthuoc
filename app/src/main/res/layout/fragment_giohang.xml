@@ -57,7 +57,7 @@
                 android:textStyle="bold"
                 android:textColor="#ffff"
                 android:background="@drawable/buttonpaymentshape"
-                android:text="THANH TOÁN"
+                android:text="Xác nhận đơn hàng"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

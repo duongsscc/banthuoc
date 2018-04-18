@@ -16,6 +16,10 @@ public class tkkhachhang {
     public tkkhachhang()
     {}
 
+    public tkkhachhang(String taikhoan) {
+        this.taikhoan = taikhoan;
+        this.matkhau = matkhau;
+    }
 
     public int getIdKhachhang() {
         return IdKhachhang;

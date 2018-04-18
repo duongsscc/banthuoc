@@ -13,19 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TestKetnoiCSDL"></activity>
-        <activity android:name=".Dichvu.dangnhapdangky.ActivityDangky"></activity>
+        <activity android:name=".Dichvu.dangnhapdangky.ActivityDangky"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".Dichvu.dangnhapdangky.ActivityDangNhap" />
         <activity android:name=".Dichvu.thanhtoan.ActivityThanhtoan" />
-        <activity android:name=".Dichvu.navigationdr.ActivityNavigationDr" />
         <activity
             android:name=".Dichvu.ListPage.ListPageActivity"
             android:label="@string/title_activity_list_page"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>
