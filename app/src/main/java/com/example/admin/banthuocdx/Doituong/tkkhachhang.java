@@ -10,7 +10,6 @@ public class tkkhachhang {
     String Sodienthoai;
     String DiaChi;
     String AnhKhachhang;
-    String AnhKhachhangchitiet;
     String taikhoan;
     String matkhau;
     public tkkhachhang()
@@ -61,13 +60,6 @@ public class tkkhachhang {
         AnhKhachhang = anhKhachhang;
     }
 
-    public String getAnhKhachhangchitiet() {
-        return AnhKhachhangchitiet;
-    }
-
-    public void setAnhKhachhangchitiet(String anhKhachhangchitiet) {
-        AnhKhachhangchitiet = anhKhachhangchitiet;
-    }
 
     public String getTaikhoan() {
         return taikhoan;

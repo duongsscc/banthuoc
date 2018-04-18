@@ -115,7 +115,6 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         tkkhachhang.setHoten(rs.getString("Hoten"));
                         tkkhachhang.setSodienthoai(rs.getString("Sodienthoai"));
                         tkkhachhang.setAnhKhachhang(rs.getString("Anhkhachhang"));
-                        tkkhachhang.setAnhKhachhangchitiet(rs.getString("Anhkhachhangchitiet"));
                         tkkhachhang.setTaikhoan(rs.getString("taikhoan"));
                         tkkhachhang.setMatkhau(rs.getString("matkhau"));
                         listkh.add(tkkhachhang);
@@ -125,16 +124,19 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         edit.putString("Hoten",rs.getString("Hoten"));
                         edit.putString("Sodienthoai",rs.getString("Sodienthoai"));
                         edit.putString("Anhkhachhang",rs.getString("Anhkhachhang"));
-                        edit.putString("Anhkhachhangchitiet",rs.getString("Anhkhachhangchitiet"));
                         edit.commit();
 
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                try {
+                                    wait(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 tenKH.setText(listkh.get(0).getHoten());
                                 sdtKH.setText(listkh.get(0).getSodienthoai());
-                                //hàm dưới không sai.Nhưng chưa có ảnh trong CSDL nên sẽ bị lỗi
-                           //     imgAnhkh.setImageResource(Integer.parseInt(listkh.get(0).getAnhKhachhang().toString()));
+
                             }
                         });
                         mIncomingHandler.sendEmptyMessage(0);

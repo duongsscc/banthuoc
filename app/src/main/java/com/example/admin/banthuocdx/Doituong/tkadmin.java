@@ -10,7 +10,6 @@ public class tkadmin {
     String Sodienthoai;
     String Chucvu;
     String AnhAdmin;
-    String AndAdminChitiet;
     String taikhoan;
     String matkhau;
     public tkadmin()
@@ -56,13 +55,6 @@ public class tkadmin {
         AnhAdmin = anhAdmin;
     }
 
-    public String getAndAdminChitiet() {
-        return AndAdminChitiet;
-    }
-
-    public void setAndAdminChitiet(String andAdminChitiet) {
-        AndAdminChitiet = andAdminChitiet;
-    }
 
     public String getTaikhoan() {
         return taikhoan;
