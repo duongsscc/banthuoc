@@ -166,7 +166,6 @@ public class ThuocFragment extends Fragment {
                         tkkhachhang.setHoten(rs.getString("Hoten"));
                         tkkhachhang.setSodienthoai(rs.getString("Sodienthoai"));
                         tkkhachhang.setAnhKhachhang(rs.getString("Anhkhachhang"));
-                        tkkhachhang.setAnhKhachhangchitiet(rs.getString("Anhkhachhangchitiet"));
                         tkkhachhang.setTaikhoan(rs.getString("taikhoan"));
                         tkkhachhang.setMatkhau(rs.getString("matkhau"));
                         listkh.add(tkkhachhang);
@@ -199,7 +198,6 @@ public class ThuocFragment extends Fragment {
                         tk.setSodienthoai(rs.getString("Sodienthoai"));
                         tk.setChucvu(rs.getString("Chucvu"));
                         tk.setAnhAdmin(rs.getString("Anhadmin"));
-                        tk.setAndAdminChitiet(rs.getString("Anhadminchitiet"));
                         tk.setTaikhoan(rs.getString("taikhoan"));
                         tk.setMatkhau(rs.getString("matkhau"));
                        listadmin.add(tk);
