@@ -96,6 +96,11 @@ public class ThuocFragment extends Fragment {
             @Override
             public void run() {
                 con = kc.ketnoi();
+                try {
+                    wait(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 String sql = "INSERT INTO giohang (Tonggiatien, Soluongmua, Thuoc_IdThuoc, Thuoc_Admin_IdAdmin, Khachhang_IdKhachhang) values(?,?,?,?,?);";
                 try {

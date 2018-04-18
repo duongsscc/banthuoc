@@ -119,18 +119,25 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         tkkhachhang.setTaikhoan(rs.getString("taikhoan"));
                         tkkhachhang.setMatkhau(rs.getString("matkhau"));
                         listkh.add(tkkhachhang);
-
                         SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
                         edit.putString("Taikhoan",rs.getString("taikhoan"));
                         edit.putString("Hoten",rs.getString("Hoten"));
                         edit.putString("Sodienthoai",rs.getString("Sodienthoai"));
                         edit.putString("Anhkhachhang",rs.getString("Anhkhachhang"));
-                        edit.putString("Anhkhachhangchitiet",rs.getString("Anhkhachangchitiet"));
+                        edit.putString("Anhkhachhangchitiet",rs.getString("Anhkhachhangchitiet"));
                         edit.commit();
 
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                        hienlist();
+                                tenKH.setText(listkh.get(0).getHoten());
+                                sdtKH.setText(listkh.get(0).getSodienthoai());
+                           //     imgAnhkh.setImageResource(Integer.parseInt(listkh.get(0).getAnhKhachhang().toString()));
+                            }
+                        });
+
 
 
                         mIncomingHandler.sendEmptyMessage(0);
@@ -144,13 +151,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         }).start();
     }
 
-    public void hienlist() {
 
-        tenKH.setText(listkh.get(0).getHoten());
-        sdtKH.setText(listkh.get(0).getSodienthoai());
-        imgAnhkh.setImageResource(Integer.parseInt(listkh.get(0).getAnhKhachhang().toString()));
-
-    }
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {
         public boolean handleMessage(Message msg) {

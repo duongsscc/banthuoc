@@ -80,10 +80,6 @@ public class ActivityDangNhap extends AppCompatActivity {
                                 String taikhoan = object.getString("Taikhoan");
                                 String matkhau = object.getString("Matkhau");
                                 if (edtTaikhoan.getText().toString().trim().equals(taikhoan) && edtMatkhau.getText().toString().trim().equals(matkhau)) {
-//                                    SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
-//                                    SharedPreferences.Editor edit = sharedPreferences.edit();
-//                                    edit.putString("Taikhoan", taikhoan);
-//                                    edit.commit();
                                     Intent intent = new Intent(ActivityDangNhap.this, ListPageActivity.class);
                                     intent.putExtra("tentk", taikhoan);
                                     startActivity(intent);
