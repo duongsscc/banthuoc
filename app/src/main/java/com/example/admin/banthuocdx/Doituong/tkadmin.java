@@ -12,6 +12,16 @@ public class tkadmin {
     String AnhAdmin;
     String taikhoan;
     String matkhau;
+    AdminTheloaiPK adminTheloaiPK;
+
+    public AdminTheloaiPK getAdminTheloaiPK() {
+        return adminTheloaiPK;
+    }
+
+    public void setAdminTheloaiPK(AdminTheloaiPK adminTheloaiPK) {
+        this.adminTheloaiPK = adminTheloaiPK;
+    }
+
     public tkadmin()
     {}
 

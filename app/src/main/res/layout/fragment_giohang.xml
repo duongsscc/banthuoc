@@ -10,14 +10,14 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-        <android.support.v7.widget.RecyclerView
-            android:background="#8f2e33"
-            android:id="@+id/listRethuocGioHang"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+    <android.support.v7.widget.RecyclerView
+        android:background="#8f2e33"
+        android:id="@+id/listRethuocGioHang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-        </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
 
     <LinearLayout
@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/btnXacNhanDonHang"
                 android:shadowColor="#ffff"
                 android:textSize="23sp"
                 android:textStyle="bold"

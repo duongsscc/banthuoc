@@ -12,21 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestKetnoiCSDL"></activity>
-        <activity android:name=".Dichvu.dangnhapdangky.ActivityDangky"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".TestKetnoiCSDL" />
+        <activity android:name=".Dichvu.dangnhapdangky.ActivityDangky">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Dichvu.dangnhapdangky.ActivityDangNhap" />
-        <activity android:name=".Dichvu.thanhtoan.ActivityThanhtoan" />
         <activity
             android:name=".Dichvu.ListPage.ListPageActivity"
             android:label="@string/title_activity_list_page"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Dichvu.admin.Quanlythuoc"></activity>
+        <activity android:name=".Dichvu.thanhtoan.ActivityThanhtoan"></activity>
     </application>
 
 </manifest> <!-- <intent-filter> --><!-- <action android:name="android.intent.action.MAIN" /> --><!-- <category android:name="android.intent.category.LAUNCHER" /> --><!-- </intent-filter> -->
