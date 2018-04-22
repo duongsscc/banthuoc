@@ -1,6 +1,7 @@
 package com.example.admin.banthuocdx.Dichvu.listgiohang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.admin.banthuocdx.Dichvu.thanhtoan.ActivityThanhtoan;
 import com.example.admin.banthuocdx.Doituong.getCartChangeEvent;
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.R;
@@ -31,6 +33,8 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
     ArrayList<thuoc> arrayListThuoc;
     TextView textTongTien;
     SharedPreferences sharedPreferences;
+    Button btnXacNhanDonHang;
+
     public GiohangFragment(){
 
     }
@@ -54,6 +58,19 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         sharedPreferences = getContext().getSharedPreferences("Myuser",Context.MODE_PRIVATE);
         String hoten = sharedPreferences.getString("Hoten","KHONG CO");
   //      Toast.makeText(getContext(),hoten,)
+
+        btnXacNhanDonHang = view.findViewById(R.id.btnXacNhanDonHang);
+
+        btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), ActivityThanhtoan.class);
+                intent.putExtra("gioHang",arrayListThuoc);
+                startActivity(intent);
+                
+
+            }
+        });
 
         return view;
     }
@@ -124,7 +141,7 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         textTongTien.setText(getTongTien(arrThuoc) +" VND");
     }
 
-    public int isExistInList(ArrayList<thuoc> arrayList,thuoc th){
+    public int isExistInList(ArrayList<thuoc> arrayList, thuoc th){
         int c = 0;
         for (int i=0;i<arrayList.size();i++){
             if(arrayList.get(i).getTenThuoc().equals(th.getTenThuoc())){

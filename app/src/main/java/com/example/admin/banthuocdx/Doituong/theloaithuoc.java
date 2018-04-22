@@ -6,6 +6,22 @@ package com.example.admin.banthuocdx.Doituong;
 
 public class theloaithuoc {
     int IdTheLoaiThuoc;
+    AdminTheloaiPK adminTheloaiPK;
+
+    public theloaithuoc(int idTheLoaiThuoc, AdminTheloaiPK adminTheloaiPK, String tenTheLoai) {
+        IdTheLoaiThuoc = idTheLoaiThuoc;
+        this.adminTheloaiPK = adminTheloaiPK;
+        TenTheLoai = tenTheLoai;
+    }
+
+    public AdminTheloaiPK getAdminTheloaiPK() {
+        return adminTheloaiPK;
+    }
+
+    public void setAdminTheloaiPK(AdminTheloaiPK adminTheloaiPK) {
+        this.adminTheloaiPK = adminTheloaiPK;
+    }
+
     String TenTheLoai;
     public theloaithuoc()
     {}

@@ -1,10 +1,12 @@
 package com.example.admin.banthuocdx.Doituong;
 
+import java.io.Serializable;
+
 /**
  * Created by Admin on 3/21/2018.
  */
 
-public class thuoc {
+public class thuoc implements Serializable {
 int IdThuoc;
 String TenThuoc;
 String NgaySanXuat;
@@ -17,6 +19,17 @@ String AnhThuocList;
 theloaithuoc TheLoai;
 tkadmin Idadmin;
 int slGioHang;
+
+    public thuoc(int idThuoc, String tenThuoc, Float giatien, int soluong, String mota, String anhThuocList, theloaithuoc theLoai, tkadmin idadmin) {
+        IdThuoc = idThuoc;
+        TenThuoc = tenThuoc;
+        Giatien = giatien;
+        Soluong = soluong;
+        Mota = mota;
+        AnhThuocList = anhThuocList;
+        TheLoai = theLoai;
+        Idadmin = idadmin;
+    }
 
     public thuoc(String tenThuoc, Float giatien, int soluong, String mota, String anhThuocList) {
         TenThuoc = tenThuoc;

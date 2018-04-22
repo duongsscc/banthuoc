@@ -102,11 +102,5 @@ public class ActivityDangNhap extends AppCompatActivity {
                 });
         requestQueue.add(jsonArrayRequest);
     }
-//   public void laytaikhoan(String tk,String mk)
-//    {
-//
-//        tkkhachhang tkkhachhang = new tkkhachhang();
-//        tkkhachhang.setTaikhoan(tk.toString());
-//        tkkhachhang.setMatkhau(mk.toString());
-//    }
+
 }
