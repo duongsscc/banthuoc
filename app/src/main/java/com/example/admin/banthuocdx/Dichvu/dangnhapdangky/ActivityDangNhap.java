@@ -1,7 +1,6 @@
 package com.example.admin.banthuocdx.Dichvu.dangnhapdangky;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -20,9 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.admin.banthuocdx.Dichvu.ListPage.ListPageActivity;
-import com.example.admin.banthuocdx.Dichvu.listthuoc.Laytk;
-import com.example.admin.banthuocdx.Dichvu.listthuoc.ThuocFragment;
-import com.example.admin.banthuocdx.Doituong.tkkhachhang;
 import com.example.admin.banthuocdx.R;
 
 import org.json.JSONArray;

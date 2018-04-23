@@ -93,8 +93,6 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         sdtKH = headerview.findViewById(R.id.textheadSDT);
         Hienthikhachang(tentk);
 
-        getSupportActionBar().setTitle( "AndroidManifest.xml" );
-
 
     }
 
@@ -120,6 +118,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         tkkhachhang.setAnhKhachhang(rs.getString("Anhkhachhang"));
                         tkkhachhang.setTaikhoan(rs.getString("taikhoan"));
                         tkkhachhang.setMatkhau(rs.getString("matkhau"));
+                        tkkhachhang.setDiaChi(rs.getString("Diachi"));
                         listkh.add(tkkhachhang);
                         SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
@@ -128,6 +127,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         edit.putString("Sodienthoai",rs.getString("Sodienthoai"));
                         edit.putString("Anhkhachhang",rs.getString("Anhkhachhang"));
                         edit.putInt("IdKhachhang",rs.getInt("IdKhachhang"));
+                        edit.putString("Diachi",rs.getString("Diachi"));
                         edit.commit();
 
                         runOnUiThread(new Runnable() {
@@ -158,7 +158,6 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
     });
 
 
-
     @Override
     public void onBackPressed() {
         mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -171,22 +170,11 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, ListPageActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
         }
-//        if (mToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
-
 
 
     @Override
@@ -195,12 +183,15 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         if (m == R.id.thuoc) {
             //TODO add thuoc fragment
             Log.d("gg", "menu click");
-            Intent thuoc = new Intent(ListPageActivity.this, ListPageActivity.class);
+            Intent thuoc = new Intent(ListPageActivity.this, ThongtinKh.class);
             startActivity(thuoc);
         } else if (m == R.id.giohang) {
             Intent giohang = new Intent(ListPageActivity.this, GiohangFragment.class);
             startActivity(giohang);
-        } else if (m == R.id.dangxuat) {
+        } else if (m == R.id.thongtin) {
+            Intent thongtin = new Intent(ListPageActivity.this, ThongtinKh.class);
+            startActivity(thongtin);
+        }else if (m == R.id.dangxuat) {
             Intent dangxuat = new Intent(ListPageActivity.this, ActivityDangky.class);
             startActivity(dangxuat);
         }
@@ -215,10 +206,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_list_page, menu);
         return true;
-
     }
-
-
 
 
 //    @Override
