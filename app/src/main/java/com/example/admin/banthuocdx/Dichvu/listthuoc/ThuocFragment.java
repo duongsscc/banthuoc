@@ -1,5 +1,7 @@
 package com.example.admin.banthuocdx.Dichvu.listthuoc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +17,7 @@ import android.support.v7.widget.SearchView;
 
 
 import com.example.admin.banthuocdx.Doituong.giohang;
+import com.example.admin.banthuocdx.Doituong.theloaithuoc;
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.Doituong.tkadmin;
 import com.example.admin.banthuocdx.Doituong.tkkhachhang;
@@ -26,8 +29,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
 
 public class ThuocFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -44,8 +45,6 @@ public class ThuocFragment extends Fragment {
     tkadmin tk=null;
     tkkhachhang tkkhachhang=null;
     SearchView searchView;
-    Button themgio;
-    String taikhoan;
 
     public ThuocFragment() {
         // Required empty public constructor
@@ -124,7 +123,8 @@ public class ThuocFragment extends Fragment {
             @Override
             public void run() {
                 con = kc.ketnoi();
-
+               tkadmin tkadmin = new tkadmin();
+               theloaithuoc theloaithuoc = new theloaithuoc();
                 list = new ArrayList<>();
                 listadmin = new ArrayList<>();
                 listkh = new ArrayList<>();
@@ -136,7 +136,18 @@ public class ThuocFragment extends Fragment {
                     while (rs.next()) {
                         th = new thuoc(rs.getString("Tenthuoc"), rs.getFloat("Giatien"), rs.getInt("Soluong"), rs.getString("Mota"), rs.getString("Anhthuoclist"));
                        th.setIdThuoc(rs.getInt("IdThuoc"));
+                       int idad=rs.getInt("Admin_IdAdmin");
+                       int theloaiid=rs.getInt("Theloaithuoc_IdTheloaithuoc");
+                        tkadmin.setIdAdmin(idad);
+                        theloaithuoc.setIdTheLoaiThuoc(theloaiid);
+                        th.setIdadmin(tkadmin);
+                        th.setTheLoai(theloaithuoc);
                         list.add(th);
+                        SharedPreferences sharedPreferences= getContext().getSharedPreferences("Myuser", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putInt("IdAdmin",idad);
+
+                        edit.commit();
                         mIncomingHandler.sendEmptyMessage(0);
                     }
 
@@ -177,7 +188,6 @@ public class ThuocFragment extends Fragment {
             }
         }).start();
     }
-
     public void Hienthilistadmin() {
         new Thread(new Runnable() {
             @Override
@@ -198,7 +208,12 @@ public class ThuocFragment extends Fragment {
                         tk.setAnhAdmin(rs.getString("Anhadmin"));
                         tk.setTaikhoan(rs.getString("taikhoan"));
                         tk.setMatkhau(rs.getString("matkhau"));
-                       listadmin.add(tk);
+                        listadmin.add(tk);
+//                        SharedPreferences sharedPreferences = getSharedPreferences("Myuser", MODE_PRIVATE);
+//                        SharedPreferences.Editor edit = sharedPreferences.edit();
+//                        edit.putInt("IdAdmin",rs.getInt("IdAdmin"));
+//
+//                        edit.commit();
                         mIncomingHandler.sendEmptyMessage(0);
                     }
 
@@ -210,6 +225,8 @@ public class ThuocFragment extends Fragment {
             }
         }).start();
     }
+
+
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {
         public boolean handleMessage(Message msg) {

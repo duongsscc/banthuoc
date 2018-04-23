@@ -71,12 +71,14 @@ holder.buttonxoa.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 int idthuoc=thuocArrayList.get(position).getIdThuoc();
-//int idadmin=thuocArrayList.get(position).getIdadmin().getIdAdmin();
-//int idtheloaithuoc=thuocArrayList.get(position).getTheLoai().getIdTheLoaiThuoc();
-int idadmin=1;int idtheloaithuoc=1;
-capnhatThuoc.Xoathuoc(idthuoc,idadmin,idtheloaithuoc);
+int idadmin=thuocArrayList.get(position).getIdadmin().getIdAdmin();
+int idtheloaithuoc=thuocArrayList.get(position).getTheLoai().getIdTheLoaiThuoc();
+
+
+
 thuocArrayList.remove(position);
 notifyDataSetChanged();
+        capnhatThuoc.Xoathuoc(idthuoc,idadmin,idtheloaithuoc);
     }
 });
 holder.buttonsua.setOnClickListener(new View.OnClickListener() {

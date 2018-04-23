@@ -59,6 +59,7 @@ public class AdapterGioHang extends RecyclerView.Adapter<AdapterGioHang.ViewHold
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                 thuoc t = arrayListThuoc.get(position);
+
                 changeCartItem(new thuoc(t.getTenThuoc(),t.getGiatien(),0,newValue,t.getMota(),t.getAnhThuocList()),69);
             }
         });

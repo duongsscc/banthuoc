@@ -51,6 +51,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
     public ArrayList<tkkhachhang> listkh;
     public ArrayList<tkadmin> listadmin;
     tkkhachhang tkkhachhang = null;
+    tkadmin tk = null;
     Connection con;
     KetnoiData kc = new KetnoiData();
     TextView tenKH, sdtKH;
@@ -120,6 +121,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
                         edit.putString("Hoten",rs.getString("Hoten"));
                         edit.putString("Sodienthoai",rs.getString("Sodienthoai"));
                         edit.putString("Anhkhachhang",rs.getString("Anhkhachhang"));
+                        edit.putInt("IdKhachhang",rs.getInt("IdKhachhang"));
                         edit.commit();
 
                         runOnUiThread(new Runnable() {
@@ -140,7 +142,6 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
             }
         }).start();
     }
-
 
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {

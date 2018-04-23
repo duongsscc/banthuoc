@@ -62,6 +62,7 @@ ArrayList<tkkhachhang>listkh;
         holder.textmota.setText(th.getMota());
         holder.textgiatien.setText(String.valueOf(th.getGiatien()));
         holder.textsoluong.setText(String.valueOf(th.getSoluong()));
+        holder.idthuoc.setText(String.valueOf(th.getIdThuoc()));
         Picasso.with(context)
                 .load(th.getAnhThuocList())
                 .into(holder.imgAnh);
@@ -83,6 +84,8 @@ ArrayList<tkkhachhang>listkh;
         holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            //    sendThuocToFragmentGioHang();
+
                 sendThuocToFragmentGioHang(thuocArrayList.get(position));
             }
         });
@@ -105,7 +108,7 @@ ArrayList<tkkhachhang>listkh;
     }
 
     class appviewHolder extends RecyclerView.ViewHolder {
-        TextView textten, textmota, textgiatien, textsoluong;
+        TextView textten,idthuoc, textmota, textgiatien, textsoluong;
         ImageView imgAnh;
         CardView cardView;
         Button buttonthemgio;
@@ -117,6 +120,7 @@ ArrayList<tkkhachhang>listkh;
             textgiatien = itemView.findViewById(R.id.textGiatien);
             textsoluong = itemView.findViewById(R.id.textSoLuong);
             imgAnh = itemView.findViewById(R.id.anhirecyle);
+            idthuoc=itemView.findViewById(R.id.idthuoc);
             cardView = itemView.findViewById(R.id.itemX);
         }
     }

@@ -10,6 +10,16 @@ public class giohang {
     int SoLuongMua;
     thuoc IdThuoc;
     tkkhachhang IdKhachhang;
+
+    public com.example.admin.banthuocdx.Doituong.tkadmin getTkadmin() {
+        return tkadmin;
+    }
+
+    public void setTkadmin(com.example.admin.banthuocdx.Doituong.tkadmin tkadmin) {
+        this.tkadmin = tkadmin;
+    }
+
+    tkadmin tkadmin;
     public giohang()
     {}
 

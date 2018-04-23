@@ -98,7 +98,6 @@ public class ActivityDangky extends AppCompatActivity {
                 params.put("sdtKH", edtSdt.getText().toString().trim());
                 params.put("diachiKH", edtDiaChi.getText().toString().trim());
                 params.put("anhKH", "");
-                params.put("anhchitietKH", "");
                 params.put("taikhoanKH", edtTaiKhoan.getText().toString().trim());
                 params.put("matkhauKH", edtMatKhau.getText().toString().trim());
 

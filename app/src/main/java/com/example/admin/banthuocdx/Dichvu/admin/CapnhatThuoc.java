@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -14,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.admin.banthuocdx.Dichvu.listthuoc.AdapterThuoc;
-import com.example.admin.banthuocdx.Doituong.AdminTheloaiPK;
-import com.example.admin.banthuocdx.Doituong.giohang;
 import com.example.admin.banthuocdx.Doituong.theloaithuoc;
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.Doituong.tkadmin;
@@ -95,10 +91,9 @@ public class CapnhatThuoc extends Fragment {
             @Override
             public void run() {
                 con = kc.ketnoi();
-
+                tkadmin tkadmin = new tkadmin();
+                theloaithuoc theloaithuoc = new theloaithuoc();
                 list = new ArrayList<>();
-                listAd = new ArrayList<>();
-                listth = new ArrayList<>();
                 try {
                     String sql;
                     sql = "SELECT * FROM thuoc";
@@ -107,14 +102,13 @@ public class CapnhatThuoc extends Fragment {
                     while (rs.next()) {
                         th = new thuoc(rs.getString("Tenthuoc"), rs.getFloat("Giatien"), rs.getInt("Soluong"), rs.getString("Mota"), rs.getString("Anhthuoclist"));
                         th.setIdThuoc(rs.getInt("IdThuoc"));
-                     //   AdminTheloaiPK pk = null;
-                    //    th.setIdadmin(pk.getIdAdmin());
-                        //th.setIdadmin(th.getIdadmin().getIdAdmin());
-                   //     tk.setIdAdmin(rs.getInt("Admin_IdAdmin"));
-                   //    theloaithuoc.setIdTheLoaiThuoc(rs.getInt("Theloaithuoc_IdTheloaithuoc"));
-                       list.add(th);
-                    //   listAd.add(tk);
-                    //    listth.add(theloaithuoc);
+                        int idad = rs.getInt("Admin_IdAdmin");
+                        int theloaiid = rs.getInt("Theloaithuoc_IdTheloaithuoc");
+                        tkadmin.setIdAdmin(idad);
+                        theloaithuoc.setIdTheLoaiThuoc(theloaiid);
+                        th.setIdadmin(tkadmin);
+                        th.setTheLoai(theloaithuoc);
+                        list.add(th);
                         mIncomingHandler.sendEmptyMessage(0);
                     }
 
@@ -129,32 +123,32 @@ public class CapnhatThuoc extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (isAdded()) {
-                con = kc.ketnoi();
-                    list = new ArrayList<>();
-                    String sql = "DELETE FROM thuoc WHERE IdThuoc=? and Admin_IdAdmin=? and Theloaithuoc_IdTheloaithuoc=? ";
-                    PreparedStatement prest = null;
-                    try {
 
-                        prest = con.prepareStatement(sql);
-                        prest.setInt(1, idThuoc);
-                        prest.setInt(2, idAdmin);
-                        prest.setInt(3, idTheloaithuoc);
-                            try {
-                                wait(1500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                con = kc.ketnoi();
+                list = new ArrayList<>();
+                String sql = "DELETE FROM thuoc WHERE IdThuoc=? and Admin_IdAdmin=? and Theloaithuoc_IdTheloaithuoc=? ";
+                PreparedStatement prest = null;
+                try {
+
+                    prest = con.prepareStatement(sql);
+                    prest.setInt(1, idThuoc);
+                    prest.setInt(2, idAdmin);
+                    prest.setInt(3, idTheloaithuoc);
                         prest.executeUpdate();
 
-                        mIncomingHandler.sendEmptyMessage(0);
+                    mIncomingHandler.sendEmptyMessage(1);
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
+
         });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {

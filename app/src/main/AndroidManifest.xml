@@ -25,7 +25,7 @@
             android:name=".Dichvu.ListPage.ListPageActivity"
             android:label="@string/title_activity_list_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Dichvu.admin.Quanlythuoc"></activity>
+        <activity android:name=".Dichvu.admin.Quanlythuoc"> </activity>
         <activity android:name=".Dichvu.thanhtoan.ActivityThanhtoan"></activity>
     </application>
 
