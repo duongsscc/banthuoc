@@ -33,6 +33,7 @@ import com.example.admin.banthuocdx.Dichvu.listgiohang.GiohangFragment;
 import com.example.admin.banthuocdx.Dichvu.listthuoc.ThuocFragment;
 import com.example.admin.banthuocdx.Doituong.tkadmin;
 import com.example.admin.banthuocdx.Doituong.tkkhachhang;
+import com.example.admin.banthuocdx.Interface.KetnoiFagmentInterface;
 import com.example.admin.banthuocdx.Ketnoicsdl.KetnoiData;
 import com.example.admin.banthuocdx.R;
 
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 
 import static android.app.PendingIntent.getActivity;
 
-public class ListPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,KetnoiFagmentInterface {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -183,7 +184,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         if (m == R.id.thuoc) {
             //TODO add thuoc fragment
             Log.d("gg", "menu click");
-            Intent thuoc = new Intent(ListPageActivity.this, ThongtinKh.class);
+            Intent thuoc = new Intent(ListPageActivity.this, ThuocFragment.class);
             startActivity(thuoc);
         } else if (m == R.id.giohang) {
             Intent giohang = new Intent(ListPageActivity.this, GiohangFragment.class);
@@ -206,6 +207,11 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_list_page, menu);
         return true;
+    }
+
+    @Override
+    public void onClickThuocFragment(String str) {
+
     }
 
 
@@ -274,6 +280,7 @@ public class ListPageActivity extends AppCompatActivity implements NavigationVie
             switch (position) {
                 case 0:
                     ThuocFragment thuocFragment = new ThuocFragment();
+
                     return thuocFragment;
                 case 1:
                     GiohangFragment giohangFragment = new GiohangFragment();

@@ -81,8 +81,7 @@ public class ActivityDangNhap extends AppCompatActivity {
                                     startActivity(intent);
 
                                 } else {
-                                    String x = "sai thông tin";
-                                    textView.setText(x);
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -11,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.banthuocdx.Doituong.thuoc;
 import com.example.admin.banthuocdx.Doituong.tkadmin;
@@ -66,27 +67,17 @@ ArrayList<tkkhachhang>listkh;
         Picasso.with(context)
                 .load(th.getAnhThuocList())
                 .into(holder.imgAnh);
-//        holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context,"click",Toast.LENGTH_LONG).show();
-//                ThuocFragment tf= new ThuocFragment();
-//                float tongggiatien=0;
-//                int soluongmua=0, idthuoc=0, idadmin=0, idkhachhang = 0;
-//                tongggiatien=thuocArrayList.get(position).getGiatien();
-//                soluongmua=1;
-//                idthuoc=thuocArrayList.get(position).getIdThuoc();
-//                idadmin=1;//chưa có key set tạm :V
-//                idkhachhang=1;
-//                tf.themgiohang(tongggiatien,soluongmua,idthuoc,idadmin,idkhachhang);
-//            }
-//        });
         holder.buttonthemgio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    sendThuocToFragmentGioHang();
-
-                sendThuocToFragmentGioHang(thuocArrayList.get(position));
+ if (th.getSoluong()<=0)
+ {
+     Toast.makeText(context,"Hết hàng",Toast.LENGTH_SHORT).show();
+ }
+ else {
+     Toast.makeText(context,th.getTenThuoc()+"    Vào giỏ",Toast.LENGTH_SHORT).show();
+     sendThuocToFragmentGioHang(thuocArrayList.get(position));
+ }
             }
         });
 

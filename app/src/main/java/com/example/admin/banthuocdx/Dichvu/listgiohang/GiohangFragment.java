@@ -15,8 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.admin.banthuocdx.Dichvu.thanhtoan.ActivityThanhtoan;
+import com.example.admin.banthuocdx.Dichvu.thanhtoan.ThanhtoanActivity;
 import com.example.admin.banthuocdx.Doituong.getCartChangeEvent;
 import com.example.admin.banthuocdx.Doituong.giohang;
 import com.example.admin.banthuocdx.Doituong.thuoc;
@@ -29,11 +30,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.xml.transform.Result;
 
 public class GiohangFragment extends android.support.v4.app.Fragment {
     private RecyclerView recyclerView;
@@ -47,10 +45,11 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
     Button btnXacNhanDonHang;
     String taiKhoan, hoTen, soDienThoai, anhKhachHang;
     int idKhachhang, idAdmin;
-    float tong = 0f;
+    float tong = 0;
     int c = 0;
     thuoc th;
     int idthuoc = 0;
+    int soluongton = 0;
 
     public GiohangFragment() {
 
@@ -80,53 +79,47 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         idAdmin = sharedPreferences.getInt("IdAdmin", 0);
         btnXacNhanDonHang = view.findViewById(R.id.btnXacNhanDonHang);
 
-        btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Connection con;
-                        arrayListThuoc = new ArrayList<>();
-                        KetnoiData kc = new KetnoiData();
-                        con = kc.ketnoi();
-                        String sql = "Insert into giohang (`Tonggiatien`, `Soluongmua`, `Thuoc_IdThuoc`, `Thuoc_Admin_IdAdmin`, `Khachhang_IdKhachhang`) values (?,?,?,?,?)";
+    btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
-                        //INSERT INTO `banthuoc`.`giohang` (`Tonggiatien`, `Soluongmua`, `Thuoc_IdThuoc`, `Thuoc_Admin_IdAdmin`, `Khachhang_IdKhachhang`) VALUES ('90000', '1', '1', '1', '1');
-                        try {
-                            PreparedStatement stm = con.prepareStatement(sql);
-                            listgh = new ArrayList<>();
-//                            for (thuoc k : arrayListThuoc) {
-//
-//
-//                            }
-                            stm.setFloat(1, tong);
-                            stm.setInt(2, c);
-                            stm.setInt(3, idthuoc);
-                            stm.setInt(4, idAdmin);
-                            stm.setInt(5, idKhachhang);
-
-                            stm.executeUpdate();
-
-
-                            mIncomingHandler.sendEmptyMessage(0);
-
-
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Connection con;
+                    arrayListThuoc = new ArrayList<>();
+                    KetnoiData kc = new KetnoiData();
+                    con = kc.ketnoi();
+                    String sql = "Insert into giohang (`Tonggiatien`, `Soluongmua`, `Thuoc_IdThuoc`, `Thuoc_Admin_IdAdmin`, `Khachhang_IdKhachhang`) values (?,?,?,?,?)";
+                    try {
+                        PreparedStatement stm = con.prepareStatement(sql);
+                        listgh = new ArrayList<>();
+                        stm.setFloat(1, tong);
+                        stm.setInt(2, c);
+                        stm.setInt(3, idthuoc);
+                        stm.setInt(4, idAdmin);
+                        stm.setInt(5, idKhachhang);
+                        stm.executeUpdate();
+                        mIncomingHandler.sendEmptyMessage(0);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
-                }).start();
-                Intent intent = new Intent(getActivity().getApplicationContext(), ActivityThanhtoan.class);
-                intent.putExtra("gioHang", arrayListThuoc);
-                startActivity(intent);
+                }
+            }).start();
+            if (tong>0) {
+            Intent intent = new Intent(getActivity().getApplicationContext(), ThanhtoanActivity.class);
+            intent.putExtra("gioHang", arrayListThuoc);
+            startActivity(intent);
+        }
+else
+        {
+            Toast.makeText(getActivity(),"KHông có mặt hàng",Toast.LENGTH_SHORT).show();
+        }
 
 
-            }
-        });
-
-        return view;
+    }
+    });
+      return view;
     }
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {
@@ -175,12 +168,15 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
             }
             CauHinhList(arrayListThuoc);
         } else {
-            t = new thuoc(th.getTenThuoc(), th.getGiatien(), 4, 1, th.getMota(), th.getAnhThuocList());
-
+            t = new thuoc(th.getTenThuoc(), th.getGiatien(), th.getSoluong(), 1, th.getMota(), th.getAnhThuocList());
             t.setIdThuoc(th.getIdThuoc());
-            ;
-            //Toast.makeText(getActivity().getApplicationContext(), "url"+t.getAnhThuocList(), Toast.LENGTH_SHORT).show();
-            arrayListThuoc.add(t);
+            if (th.getSlGioHang()<=th.getSlGioHang()) {
+                arrayListThuoc.add(t);
+            }
+            else
+            {
+                Toast.makeText(getActivity(),"vuot qua so luong",Toast.LENGTH_SHORT).show();
+            }
             CauHinhList(arrayListThuoc);
         }
     }
@@ -205,7 +201,7 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         recyclerView.setAdapter(adapter);
         textTongTien.setText(getTongTien(arrThuoc) + " VND");
         getIdthuoc(arrThuoc);
-
+        getSoluongton(arrThuoc);
     }
 
     public int isExistInList(ArrayList<thuoc> arrayList, thuoc th) {
@@ -216,11 +212,12 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
                 c = arrayList.get(i).getIdThuoc();
             }
         }
+
         return c;
     }
 
     public float getTongTien(ArrayList<thuoc> arrayThuoc) {
-        tong = 0f;
+        tong = 0;
         c = 0;
         if (arrayThuoc != null) {
             for (int i = 0; i < arrayThuoc.size(); i++) {
@@ -243,4 +240,44 @@ public class GiohangFragment extends android.support.v4.app.Fragment {
         }
         return idthuoc;
     }
+
+    public int getSoluongton(ArrayList<thuoc> arrayListThuoc) {
+        soluongton = 0;
+        th = new thuoc();
+        for (int i = 0; i < arrayListThuoc.size(); i++) {
+            soluongton = arrayListThuoc.get(i).getSoluong() - arrayListThuoc.get(i).getSlGioHang();
+
+        }
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        Connection con;
+       // arrayListThuoc = new ArrayList<>();
+        idAdmin = sharedPreferences.getInt("IdAdmin", 0);
+       int idtheloai = sharedPreferences.getInt("IdTheloaithuoc", 0);
+        KetnoiData kc = new KetnoiData();
+        con = kc.ketnoi();
+        String sql; //
+        sql = "UPDATE thuoc SET Soluong=?,Theloaithuoc_IdTheloaithuoc=?,Admin_IdAdmin=? WHERE IdThuoc=?";
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setInt(4,idthuoc);
+            stm.setFloat(1, soluongton);
+            stm.setInt(2,idtheloai);
+            stm.setInt(3,idAdmin);
+            stm.executeUpdate();
+
+
+            mIncomingHandler.sendEmptyMessage(0);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+}).start();
+        return soluongton;
+    }
+
 }

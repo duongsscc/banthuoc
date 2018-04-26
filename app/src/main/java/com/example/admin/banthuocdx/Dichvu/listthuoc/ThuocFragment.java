@@ -24,6 +24,8 @@ import com.example.admin.banthuocdx.Doituong.tkkhachhang;
 import com.example.admin.banthuocdx.Ketnoicsdl.KetnoiData;
 import com.example.admin.banthuocdx.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,8 +44,8 @@ public class ThuocFragment extends Fragment {
     Connection con;
     KetnoiData kc = new KetnoiData();
     thuoc th = null;
-    tkadmin tk=null;
-    tkkhachhang tkkhachhang=null;
+    tkadmin tk = null;
+    tkkhachhang tkkhachhang = null;
     SearchView searchView;
 
     public ThuocFragment() {
@@ -86,7 +88,6 @@ public class ThuocFragment extends Fragment {
         });
     }
 
-
     public void themgiohang(final float tongggiatien, final int soluongmua, final int idthuoc, final int idadmin, final int idkhachhang) {
 
         new Thread(new Runnable() {
@@ -102,11 +103,11 @@ public class ThuocFragment extends Fragment {
                 String sql = "INSERT INTO giohang (Tonggiatien, Soluongmua, Thuoc_IdThuoc, Thuoc_Admin_IdAdmin, Khachhang_IdKhachhang) values(?,?,?,?,?);";
                 try {
                     PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setFloat(1,tongggiatien);
-                    statement.setInt(2,soluongmua);
-                    statement.setInt(3,idthuoc);
-                    statement.setInt(4,idadmin);
-                    statement.setInt(5,idkhachhang);
+                    statement.setFloat(1, tongggiatien);
+                    statement.setInt(2, soluongmua);
+                    statement.setInt(3, idthuoc);
+                    statement.setInt(4, idadmin);
+                    statement.setInt(5, idkhachhang);
                     statement.executeUpdate();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -123,8 +124,9 @@ public class ThuocFragment extends Fragment {
             @Override
             public void run() {
                 con = kc.ketnoi();
-               tkadmin tkadmin = new tkadmin();
-               theloaithuoc theloaithuoc = new theloaithuoc();
+//                String tentk = getArguments().getString("tentk");
+                tkadmin tkadmin = new tkadmin();
+                theloaithuoc theloaithuoc = new theloaithuoc();
                 list = new ArrayList<>();
                 listadmin = new ArrayList<>();
                 listkh = new ArrayList<>();
@@ -135,18 +137,18 @@ public class ThuocFragment extends Fragment {
                     ResultSet rs = prest.executeQuery();
                     while (rs.next()) {
                         th = new thuoc(rs.getString("Tenthuoc"), rs.getFloat("Giatien"), rs.getInt("Soluong"), rs.getString("Mota"), rs.getString("Anhthuoclist"));
-                       th.setIdThuoc(rs.getInt("IdThuoc"));
-                       int idad=rs.getInt("Admin_IdAdmin");
-                       int theloaiid=rs.getInt("Theloaithuoc_IdTheloaithuoc");
+                        th.setIdThuoc(rs.getInt("IdThuoc"));
+                        int idad = rs.getInt("Admin_IdAdmin");
+                        int theloaiid = rs.getInt("Theloaithuoc_IdTheloaithuoc");
                         tkadmin.setIdAdmin(idad);
                         theloaithuoc.setIdTheLoaiThuoc(theloaiid);
                         th.setIdadmin(tkadmin);
                         th.setTheLoai(theloaithuoc);
                         list.add(th);
-                        SharedPreferences sharedPreferences= getContext().getSharedPreferences("Myuser", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("Myuser", Context.MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
-                        edit.putInt("IdAdmin",idad);
-
+                        edit.putInt("IdAdmin", idad);
+                        edit.putInt("IdTheloaithuoc", theloaiid);
                         edit.commit();
                         mIncomingHandler.sendEmptyMessage(0);
                     }
@@ -188,6 +190,7 @@ public class ThuocFragment extends Fragment {
             }
         }).start();
     }
+
     public void Hienthilistadmin() {
         new Thread(new Runnable() {
             @Override
@@ -225,7 +228,6 @@ public class ThuocFragment extends Fragment {
             }
         }).start();
     }
-
 
 
     Handler mIncomingHandler = new Handler(new Handler.Callback() {

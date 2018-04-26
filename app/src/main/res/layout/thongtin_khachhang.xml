@@ -25,12 +25,17 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@mipmap/ic_launcher_round" />
-
+<TextView
+    android:layout_margin="10dp"
+    android:textSize="20dp"
+    android:text="Thông tin Tài khoản"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Tai khoan"
                 android:id="@+id/taikhoankh"
                 android:textColor="#de3636"
@@ -127,7 +132,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

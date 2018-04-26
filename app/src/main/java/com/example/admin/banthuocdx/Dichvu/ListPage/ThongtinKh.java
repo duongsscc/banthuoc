@@ -87,7 +87,7 @@ public class ThongtinKh extends AppCompatActivity {
                     con = kc.ketnoi();
                     PreparedStatement prest = con.prepareStatement(sql);
                     prest.setInt(4, idkh);
-                    if (hotenkh.getText() != null && sdtkh.getText() != null && diachikh.getText() != null) {
+                    if (hotenkh.getText() != null || sdtkh.getText() != null || diachikh.getText() != null) {
                         prest.setString(1, hotenkh.getText().toString().trim());
                         prest.setString(2, sdtkh.getText().toString().trim());
                         prest.setString(3, diachikh.getText().toString().trim());
